@@ -1,16 +1,16 @@
 import type { Candle, Period, Quote } from "./types";
 
 const SEEDS: Record<string, { base: number; currency: string; name: string }> = {
-  AAPL:        { base: 232.5, currency: "USD", name: "Apple Inc." },
-  NVDA:        { base: 198.4, currency: "USD", name: "NVIDIA Corp." },
-  MSFT:        { base: 442.1, currency: "USD", name: "Microsoft Corp." },
-  TSLA:        { base: 251.3, currency: "USD", name: "Tesla Inc." },
-  GOOGL:       { base: 184.6, currency: "USD", name: "Alphabet Inc." },
-  "TCS.NS":    { base: 2580,  currency: "INR", name: "Tata Consultancy" },
-  "INFY.NS":   { base: 1314,  currency: "INR", name: "Infosys Ltd." },
-  "WIPRO.NS":  { base: 545,   currency: "INR", name: "Wipro Ltd." },
-  "HDFCBANK.NS":{ base: 1684, currency: "INR", name: "HDFC Bank" },
-  "RELIANCE.NS":{ base: 1287, currency: "INR", name: "Reliance Industries" },
+  AAPL:        { base: 195.5, currency: "USD", name: "Apple Inc." },
+  NVDA:        { base: 875.2, currency: "USD", name: "NVIDIA Corp." },
+  MSFT:        { base: 415.8, currency: "USD", name: "Microsoft Corp." },
+  TSLA:        { base: 175.4, currency: "USD", name: "Tesla Inc." },
+  GOOGL:       { base: 172.3, currency: "USD", name: "Alphabet Inc." },
+  "TCS.NS":    { base: 3520,  currency: "INR", name: "Tata Consultancy" },
+  "INFY.NS":   { base: 1580,  currency: "INR", name: "Infosys Ltd." },
+  "WIPRO.NS":  { base: 460,   currency: "INR", name: "Wipro Ltd." },
+  "HDFCBANK.NS":{ base: 1720, currency: "INR", name: "HDFC Bank" },
+  "RELIANCE.NS":{ base: 1340, currency: "INR", name: "Reliance Industries" },
 };
 
 function hash(s: string) {

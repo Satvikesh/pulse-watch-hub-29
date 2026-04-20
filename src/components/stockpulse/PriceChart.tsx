@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import {
-  Area, AreaChart, Bar, BarChart, CartesianGrid, ComposedChart, Line, ReferenceLine,
+  Area, AreaChart, Bar, BarChart, CartesianGrid, Cell, ComposedChart, Line, ReferenceLine,
   ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from "recharts";
 import type { Candle, Period } from "@/lib/stockpulse/types";
@@ -109,15 +109,26 @@ export function PriceChart({
               <Tooltip
                 contentStyle={{ background: "var(--panel)", border: "1px solid var(--border)", borderRadius: 8, fontSize: 12 }}
                 labelStyle={{ color: "var(--text-dim)" }}
-                formatter={(v: unknown, name: string) => name === "range" || name === "body" ? null : `${sym}${Number(v).toFixed(2)}`}
+                formatter={(v: unknown, name: string) => {
+                  if (name === "range" || name === "body") return null;
+                  return `${sym}${Number(v).toFixed(2)}`;
+                }}
               />
               {prevClose != null && (
                 <ReferenceLine y={prevClose} stroke="var(--text-dim)" strokeDasharray="4 4" />
               )}
-              {/* wick */}
-              <Bar dataKey="range" fill="var(--text-dim)" barSize={1} />
-              {/* body — split by bull/bear via two stacked sets isn't trivial; use line for clarity */}
-              <Line type="monotone" dataKey="close" stroke={stroke} strokeWidth={2} dot={false} />
+              {/* wick: thin bar from low to high */}
+              <Bar dataKey="range" barSize={1} isAnimationActive={false}>
+                {data.map((d, i) => (
+                  <Cell key={i} fill={d.bull ? "var(--bull)" : "var(--bear)"} />
+                ))}
+              </Bar>
+              {/* body: bar from min(open,close) to max(open,close) */}
+              <Bar dataKey="body" barSize={8} isAnimationActive={false}>
+                {data.map((d, i) => (
+                  <Cell key={i} fill={d.bull ? "var(--bull)" : "var(--bear)"} />
+                ))}
+              </Bar>
             </ComposedChart>
           ) : (
             <AreaChart data={data} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
