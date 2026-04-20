@@ -1,26 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Terminal } from "@/components/stockpulse/Terminal";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "StockPulse — Real-Time Stock Terminal" },
+      { name: "description", content: "Bloomberg-style real-time stock tracker with watchlist, alerts, portfolio, and compare." },
+      { property: "og:title", content: "StockPulse — Real-Time Stock Terminal" },
+      { property: "og:description", content: "Bloomberg-style real-time stock tracker with watchlist, alerts, portfolio, and compare." },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return <Terminal />;
 }
