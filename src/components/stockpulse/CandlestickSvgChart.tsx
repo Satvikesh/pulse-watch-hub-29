@@ -23,7 +23,17 @@ export function CandlestickSvgChart({ candles, prevClose, currency }: Candlestic
     const innerHeight = height - margin.top - margin.bottom;
 
     if (!candles.length) {
-      return { width, height, margin, innerWidth, innerHeight, yTicks: [], xTicks: [], candles: [] };
+      return {
+        width,
+        height,
+        margin,
+        innerWidth,
+        innerHeight,
+        yTicks: [],
+        xTicks: [],
+        candles: [],
+        yScale: () => margin.top + innerHeight / 2,
+      };
     }
 
     const lows = candles.map((c) => c.low);
